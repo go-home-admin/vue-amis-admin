@@ -35,7 +35,7 @@ service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
-  */
+   */
 
   /**
    * Determine the request status by custom code
@@ -46,15 +46,15 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.status !== 0) {
       Message({
-        message: res.message || 'Error',
+        message: res.msg || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      if (res.status === 50008 || res.status === 50012 || res.status === 50014) {
         // to re-login
         MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
           confirmButtonText: 'Re-Login',
@@ -66,7 +66,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.msg || 'Error'))
     } else {
       return res
     }
@@ -82,4 +82,78 @@ service.interceptors.response.use(
   }
 )
 
+service.get = async function(url, params = {}, config = {}) {
+  return new Promise((resolve, reject) => {
+    service({
+      method: 'get',
+      url: url,
+      params: params,
+      ...config
+    }).then((response) => {
+      resolve(response)
+    }).catch((error) => {
+      reject(error)
+    })
+  })
+}
+
+service.post = async function(url, data = {}, config = {}) {
+  return new Promise((resolve, reject) => {
+    service({
+      method: 'post',
+      url: url,
+      data,
+      ...config
+    }).then((response) => {
+      resolve(response)
+    }).catch((error) => {
+      reject(error)
+    })
+  })
+}
+
+service.put = async function(url, params = {}, config = {}) {
+  return new Promise((resolve, reject) => {
+    service({
+      method: 'put',
+      url: url,
+      data: params,
+      ...config
+    }).then((response) => {
+      resolve(response)
+    }).catch((error) => {
+      reject(error)
+    })
+  })
+}
+
+service.patch = async function(url, params = {}, config = {}) {
+  return new Promise((resolve, reject) => {
+    service({
+      method: 'patch',
+      url: url,
+      params: params,
+      ...config
+    }).then((response) => {
+      resolve(response)
+    }).catch((error) => {
+      reject(error)
+    })
+  })
+}
+
+service.delete = async function(url, params = {}, config = {}) {
+  return new Promise((resolve, reject) => {
+    service({
+      method: 'delete',
+      url: url,
+      params: params,
+      ...config
+    }).then((response) => {
+      resolve(response)
+    }).catch((error) => {
+      reject(error)
+    })
+  })
+}
 export default service
