@@ -30,11 +30,14 @@ export default {
           updateLocation: function(to, replace) {
             const location = window.location
             const idx = location.hash.indexOf('?')
-            const oldParams = ~idx ? getUrlParams(location.hash.substring(idx + 1)) : ''
+            const oldParams = ~idx ? getUrlParams(location.hash.substring(idx + 1)) : {}
             const newParams = getUrlParams(to)
             const locationHash = ~idx ? location.hash.substring(0, idx) : location.hash
             Object.assign(oldParams, newParams)
-            window.history.pushState(null, '', locationHash + '?' + ObjToUrlParams(oldParams))
+            const searchStr = ObjToUrlParams(oldParams)
+            if (searchStr !== '') {
+              window.history.pushState(null, '', locationHash + '?' + searchStr)
+            }
           }
         })
     })
