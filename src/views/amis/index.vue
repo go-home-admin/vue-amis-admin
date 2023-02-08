@@ -14,7 +14,8 @@ export default {
   data() {
     return {
       // eslint-disable-next-line no-undef
-      match: amisRequire('path-to-regexp').match
+      match: amisRequire('path-to-regexp').match,
+      amisPage: undefined
     }
   },
   mounted() {
@@ -25,7 +26,7 @@ export default {
     }
     request(amisUrl).then(res => {
       // eslint-disable-next-line no-undef
-      amisRequire('amis/embed').embed('#box', res.data, {},
+      this.amisPage = amisRequire('amis/embed').embed('#box', res.data, {},
         {
           updateLocation: function(to, replace) {
             const location = window.location
@@ -42,16 +43,16 @@ export default {
         })
     })
   },
-  methods: {}
+  destroyed() {
+    if (this.amisPage !== undefined) {
+      this.amisPage.unmount()
+    }
+  }
 }
 </script>
 
 <style scoped>
-#box {
-  margin-top: -1px;
-}
-
 .box-container {
-  margin-top: 2px;
+  margin-top: 4px;
 }
 </style>

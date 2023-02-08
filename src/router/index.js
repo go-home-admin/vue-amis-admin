@@ -86,12 +86,22 @@ export const constantRoutes = [
   {
     path: '/amis',
     component: Layout,
+    meta: {
+      title: '测试amis',
+      icon: 'el-icon-s-help'
+    },
     children: [
       {
         path: 'index',
         component: () => import('@/views/amis/index'),
         name: 'Documentation',
         meta: { title: '增删改查', icon: 'documentation', amis: 'menu' }
+      },
+      {
+        path: 'index2',
+        component: () => import('@/views/amis/index'),
+        name: 'Documentation2',
+        meta: { title: '增删改查2', icon: 'documentation', amis: 'menu' }
       }
     ]
   },
