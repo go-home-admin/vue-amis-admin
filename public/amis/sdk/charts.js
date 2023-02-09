@@ -18,10 +18,10 @@ amis.define("7bb762a",(function(r,t,e,n){"use strict";Object.defineProperty(t,"_
 amis.define("9e9d212",(function(t,e,n,i){!function(t,r){"object"==typeof e&&void 0!==n?r(e):"function"==typeof i&&i.amd?i(["exports"],r):r((t="undefined"!=typeof globalThis?globalThis:t||self).echarts={})}(this,(function(t){"use strict";
 /*! *****************************************************************************
       Copyright (c) Microsoft Corporation.
-
+  
       Permission to use, copy, modify, and/or distribute this software for any
       purpose with or without fee is hereby granted.
-
+  
       THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
       REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
       AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
@@ -44,10 +44,10 @@ var Or={},Rr={};var Nr=function(){function t(t,e,n){var i=this;this._sleepAfterS
 amis.define("7fffed7",(function(t,e,r,n){
 /*! *****************************************************************************
   Copyright (c) Microsoft Corporation.
-
+  
   Permission to use, copy, modify, and/or distribute this software for any
   purpose with or without fee is hereby granted.
-
+  
   THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
   REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
   AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,

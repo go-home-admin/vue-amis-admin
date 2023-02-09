@@ -1,4 +1,7 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import { constantRoutes } from '@/router'
+import Layout from '@/layout'
+import AppRouter from '@/router/app'
+import { AuthMenusGet } from '@/api/swagger_gen'
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -49,16 +52,39 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
-      commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+      AuthMenusGet().then(async(response) => {
+        const accessedRoutes = filterAsyncRouter(response.data.menus)
+        commit('SET_ROUTES', accessedRoutes)
+        resolve(accessedRoutes)
+      })
     })
   }
+}
+
+// 遍历后台传来的路由字符串，转换为组件对象
+function filterAsyncRouter(asyncRouterMap) {
+  return asyncRouterMap.filter(route => {
+    if (route.component) {
+      // Layout组件特殊处理
+      if (route.component === 'Layout') {
+        route.component = Layout
+      } else {
+        if (AppRouter[route.component] === undefined) {
+          console.log('未找到视图映射', route.component, AppRouter)
+          return false
+        } else {
+          route.component = AppRouter[route.component].component
+          if (route.hidden) {
+            route.hidden = true
+          }
+        }
+      }
+    }
+    if (route.children != null && route.children && route.children.length) {
+      route.children = filterAsyncRouter(route.children)
+    }
+    return true
+  })
 }
 
 export default {

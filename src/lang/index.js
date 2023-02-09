@@ -30,6 +30,7 @@ const messages = {
     ...elementJaLocale
   }
 }
+
 export function getLanguage() {
   const chooseLanguage = Cookies.get('language')
   if (chooseLanguage) return chooseLanguage
@@ -44,12 +45,14 @@ export function getLanguage() {
   }
   return 'en'
 }
+
 const i18n = new VueI18n({
   // set locale
   // options: en | zh | es
   locale: getLanguage(),
   // set locale messages
-  messages
+  messages,
+  silentTranslationWarn: true // 去除国际化警告
 })
 
 export default i18n

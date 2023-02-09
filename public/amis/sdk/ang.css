@@ -1,7 +1,7 @@
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 
 .fa {
@@ -296,7 +296,9 @@
     animation-duration: 1ms;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
     transition-delay: 0s;
+    -webkit-transition-duration: 0s;
     transition-duration: 0s;
   }
 }
@@ -10305,6 +10307,10 @@ readers do not read off random characters that represent icons */
   content: "\f26b";
 }
 
+.fa-stubber:before {
+  content: "\e5c7";
+}
+
 .fa-telegram:before {
   content: "\f2c6";
 }
@@ -10315,6 +10321,10 @@ readers do not read off random characters that represent icons */
 
 .fa-old-republic:before {
   content: "\f510";
+}
+
+.fa-odysee:before {
+  content: "\e5c6";
 }
 
 .fa-square-whatsapp:before {
@@ -10571,9 +10581,9 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 
 .fa.fa-glass:before {
@@ -76649,7 +76659,7 @@ title: Word Break
   --input-addon-text-bottom-border-width: var(--borders-width-2);
   --input-addon-text-bottom-border-style: var(--borders-style-2);
   --input-addon-text-left-border-color: var(--colors-neutral-line-8);
-  --input-addon-text-left-border-width: var(--borders-width-1);
+  --input-addon-text-left-border-width: var(--borders-width-2);
   --input-addon-text-left-border-style: var(--borders-style-2);
   --input-size-sm-height: var(--sizes-base-15);
   --input-size-default-height: var(--sizes-base-16);
@@ -89706,6 +89716,18 @@ title: Word Break
   display: none;
 }
 
+/** Browser Compatibility
+    ========================================================================== */
+
+/* 兼容Safari浏览器input disbaled状态下文字颜色不显示 */
+
+.amis-scope input[disabled],
+.amis-scope input:disabled,
+.amis-scope input.disabled,
+.amis-scope input.is-disabled {
+  -webkit-text-fill-color: var(--text--muted-color);
+}
+
 .amis-scope svg.icon {
   width: 1em;
   height: 1em;
@@ -95431,6 +95453,10 @@ title: Word Break
   border-left-style: var(--Tabs--vertical-active-border-style);
   border-left-color: var(--Tabs--vertical-onActive-border);
   border-left-width: var(--Tabs--vertical-onActive-borderWidth);
+}
+
+.amis-scope .a-Tabs--vertical > .a-Tabs-linksWrapper + .a-Tabs-content {
+  width: calc(100% - var(--Tabs--vertical-width));
 }
 
 .amis-scope .a-Tabs--vertical > .a-Tabs-content {
