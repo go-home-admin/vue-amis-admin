@@ -7,6 +7,7 @@
 <script>
 
 import { getUrlParams, ObjToUrlParams } from '@/utils/global'
+import { getToken } from '@/utils/auth'
 
 export default {
   name: 'JsonPage',
@@ -28,6 +29,10 @@ export default {
       {
         replaceText: {
           API_HOST: process.env.VUE_APP_BASE_API
+        },
+        requestAdaptor(api) {
+          api.headers.Authorization = getToken()
+          return api
         },
         updateLocation: function(to, replace) {
           const location = window.location

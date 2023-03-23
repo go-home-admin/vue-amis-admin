@@ -8,6 +8,7 @@
 
 import request from '@/utils/request'
 import { getUrlParams, ObjToUrlParams } from '@/utils/global'
+import { getToken } from '@/utils/auth'
 
 export default {
   name: 'Amis',
@@ -24,10 +25,15 @@ export default {
       alert('路由元数据需要设置meta.amis')
       return
     }
+
     request(amisUrl).then(res => {
       // eslint-disable-next-line no-undef
       this.amisPage = amisRequire('amis/embed').embed('#box', res.data, {},
         {
+          requestAdaptor(api) {
+            api.headers.Authorization = getToken()
+            return api
+          },
           updateLocation: function(to, replace) {
             const location = window.location
             const idx = location.hash.indexOf('?')

@@ -22,7 +22,7 @@ export async function AuthLogoutPost(data) {
 
 /**
  *  我的菜单
- * @returns {Promise<{code:Number,data:{menus:{meta:,parent_id:number,redirect:string,children:{}[],component:string,hidden:boolean,id:number,name:string,path:string}[]},message:string}>}
+ * @returns {Promise<{code:Number,data:{menus:{path:string,redirect:string,children:{}[],component:string,hidden:boolean,id:number,meta:,name:string,parent_id:number}[]},message:string}>}
  * @callback
  */
 export async function AuthMenusGet() {
@@ -30,41 +30,13 @@ export async function AuthMenusGet() {
 }
 
 /**
- *  测试
- * @returns {Promise<{code:Number,data:{body:,title:string},message:string}>}
- * @callback
- */
-export async function AmisTabsGet() {
-  return await http.get(`/amis/tabs`)
-}
-
-/**
- *  登陆信息
+ *  管理用户的增删改查 登陆信息
  * @param {{token?:string}} data
- * @returns {Promise<{code:Number,data:{name:string,roles:string,avatar:string,introduction:string},message:string}>}
+ * @returns {Promise<{code:Number,data:{avatar:string,introduction:string,name:string,roles:string},message:string}>}
  * @callback
  */
 export async function AuthInfoGet(data) {
   return await http.get(`/auth/info`, data)
-}
-
-/**
- *  菜单列表
- * @param {{username?:string,password?:string}} data
- * @returns {Promise<{code:Number,data:{rows:{affix:number,enable:number,id:number,hidden:number,title:string,path:string,auth:string,children:{}[],icon:string,redirect:string,sort:number,component:string,name:string,parent_id:{}[]}[]},message:string}>}
- * @callback
- */
-export async function MenuGet(data) {
-  return await http.get(`/menu`, data)
-}
-
-/**
- *  创建菜单
- * @returns {Promise<{code:Number,data:{},message:string}>}
- * @callback
- */
-export async function MenuPost() {
-  return await http.post(`/menu`)
 }
 
 /**
@@ -79,7 +51,7 @@ export async function Get() {
 /**
  *  api demo
  * @param {{id?:number}} data
- * @returns {Promise<{code:Number,data:{data:,start_time:string,tip:string},message:string}>}
+ * @returns {Promise<{code:Number,data:{start_time:string,tip:string,data:},message:string}>}
  * @callback
  */
 export async function ApiDemoGet(data) {

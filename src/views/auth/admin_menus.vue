@@ -17,6 +17,12 @@ export default {
     }
   },
   data() {
+    for (const k in AppRouter) {
+      this.viewOptions.push({
+        label: AppRouter[k].name,
+        value: AppRouter[k].name
+      })
+    }
     const form = [
       {
         'label': '父级id',
@@ -34,8 +40,9 @@ export default {
         'label': '组件',
         'name': 'component',
         'type': 'select',
+        'clearable': true,
         'placeholder': '根节点不需要组件',
-        'options': this.viewOptions ?? []
+        'options': this.viewOptions
       },
       {
         'label': '地址',
@@ -182,14 +189,6 @@ export default {
           }
         ]
       }
-    }
-  },
-  mounted() {
-    for (const k in AppRouter) {
-      this.viewOptions.push({
-        label: AppRouter[k].name,
-        value: AppRouter[k].name
-      })
     }
   }
 }
